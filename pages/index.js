@@ -3,6 +3,15 @@ import Head from "next/head";
 import { Layout } from "../components/layout";
 import { Products } from "../components/products";
 
+// import stripe js
+import { loadStripe } from "@stripe/stripe-js";
+
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe(
+	`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
+);
+
 // Pass the products object to the Home page
 export default function Home({ products }) {
   return (
